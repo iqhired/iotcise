@@ -3,28 +3,28 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers:[UserService]
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit  {
+export class RegisterComponent implements OnInit {
+  register:any;
 
   constructor(private userService:UserService){}
 
   ngOnInit(){
     this.register = {
       username:'',
+      first_name:'',
+      last_name:'',
       password:'',
-    
+      email:''
     };
    
   }
-  register:any;
+  registerUser(){
 
-  onLogin(){
-
-    this.userService.loginUser(this.register).subscribe(
+    this.userService.registerNewUser(this.register).subscribe(
       response =>{
         alert('User ' + this.register.username + ' has been created!')
       },
@@ -33,6 +33,5 @@ export class LoginComponent implements OnInit  {
     );
 
   }
-
 
 }
